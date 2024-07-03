@@ -1,0 +1,86 @@
+﻿@page "/AddEmp"
+@using octisv2.Components.Data
+@using octisv2.Components.Services
+
+
+@inject  Routedetails Routedetails
+@inject NavigationManager NavigationManager
+
+
+<h3>Add the Employee</h3>
+<hr/>
+
+<div class="mnbody">
+<form method="get">
+    <div class="mnt">
+        <div class="ant">
+            
+            <div class="cnt">
+                <label for="EPF">EPF: </label>
+                <input type="text" form="EPF" @bind="obj.EPF"/>
+            </div>
+            <div class="cnt">
+                <label for="Shift">Shift:</label>
+                <input type="text" form="Shift" @bind="@obj.Shift"/>
+            </div>
+        </div>
+        
+        <div class="ant">
+            <div class="cnt">
+                <label for="Name">Name:</label>
+                <input type="text" form="Name" @bind="@obj.Name"/>
+            </div>
+            <div class="cnt">
+                <label for="Contact">Contact :</label>
+                <input type="text" form="Contact" @bind="@obj.Contact"/>
+            </div>
+        </div>
+        <div class="ant">
+            <div class="cnt">
+                <label for="Gender">Gender:</label>
+                <input type="text" form="Gender" @bind="@obj.Gender"/>
+            </div>
+            <div class="cnt">
+                <label for="VSM">VSM:</label>
+                <input type="text" form="VSM" @bind="@obj.VSM"/>
+            </div>
+
+        </div>
+    </div>
+    <div class="cnt">
+        <label for="NIC">NIC:</label>
+        <input type="text" form="NIC" @bind="@obj.NIC"/>
+    </div>
+   
+    <div class="buttons">
+       <input type="button" class="btn0" @onclick="AddnewRoute" value="Save" />
+
+   
+        <input type="button" class="btn1" @onclick="Cancel" value="Cancel"/>
+           
+    </div>
+</form>
+</div>
+
+@code {
+   
+    Routed obj = new Routed();
+
+    protected async void AddnewRoute()
+    {
+      
+        await Routedetails.AddNewRouted(obj);
+        NavigationManager.NavigateTo("/Rate");
+        
+
+    }
+   
+
+
+    protected void Cancel()
+    {
+       
+        NavigationManager.NavigateTo("/Rate");
+    }
+
+}

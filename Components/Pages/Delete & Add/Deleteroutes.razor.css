@@ -1,0 +1,34 @@
+﻿form {
+    display: grid;
+}
+
+input {
+    width: 200px;
+}
+
+.mnbody {
+    position: center;
+}
+
+.mnt {
+    display: flex;
+}
+
+.ant {
+    display: grid;
+}
+
+.cnt {
+    display: flex;
+    margin: 10px
+}
+
+.buttons {
+    display: flex;
+}
+
+.btn {
+    -ms-border-radius: 2px;
+    border-radius: 2px;
+    margin: 10px;
+}

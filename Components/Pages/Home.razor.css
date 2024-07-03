@@ -1,0 +1,13 @@
+﻿body {
+    font-family: "Times New Roman", Times, serif;
+  
+}
+.charts {
+    padding-left: 10px;
+    display: flex;
+    position: fixed;
+}
+
+.myChart {
+    margin-right: 20px;
+}

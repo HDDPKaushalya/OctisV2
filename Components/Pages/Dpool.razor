@@ -1,0 +1,56 @@
+﻿@page "/DriverPool"
+@using octisv2.Components.Data
+@using octisv2.Components.Services
+
+<h3>Driver Pool</h3>
+
+
+<div class="divtable">
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>EPF</th>
+            <th></th>
+        </tr>
+
+            @foreach (var _dep in _driverPools)
+            {
+                
+            <tr>
+                <td @bind ="name">@_dep.Name</td>
+                <td @bind="epf">@_dep.EPF</td>
+                <td><button href="@($"DriverPool/Profile")">Profile</button></td>
+                </tr>   
+
+            }
+
+
+
+        
+    </table>
+</div>
+@inject Routedetails routedetails;
+@inject NavigationManager Navigation;
+
+@code
+{
+
+    public int epf{ get; set; }
+    public string? name { get; set; }
+
+    List<DriverPool> _driverPools = new List<DriverPool>();
+    protected override async Task OnInitializedAsync()
+    {
+        _driverPools = await routedetails.GetallDriver();
+
+    }
+
+    private void Navi()
+    {
+        Navigation.NavigateTo($"/Profile/{epf}");
+
+    }
+
+
+}
+

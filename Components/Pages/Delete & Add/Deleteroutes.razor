@@ -1,0 +1,90 @@
+﻿@page "/Deleteroutes/{EPF::int}"
+@using octisv2.Components.Data
+@using octisv2.Components.Services
+@using Microsoft.AspNetCore.Components
+@inject Routedetails Routedetails
+@inject NavigationManager NavigationManager
+
+
+<h3>Delete Routes</h3>
+<hr />
+<div class="mnbody">
+    <form method="get">
+        <div class="mnt">
+            <div class="ant">
+                <div class="cnt">
+                    <label for="EPF">EPF: </label>
+                    <label>@_obj.EPF</label>
+                </div>
+                <div class="cnt">
+                    <label for="Shift">Shift:</label>
+                    <label>@_obj.Shift</label>
+                </div>
+            </div>
+            <div class="ant">
+                <div class="cnt">
+                    <label for="Name">Name:</label>
+                    <label>@_obj.Name</label>
+                </div>
+                <div class="cnt">
+                    <label for="Contact">Contact :</label>
+                    <label>@_obj.Contact</label>
+                </div>
+            </div>
+            <div class="ant">
+                <div class="cnt">
+                    <label for="Gender">Gender:</label>
+                    <label>@_obj.Gender</label>
+                </div>
+                <div class="cnt">
+                    <label for="VSM">VSM:</label>
+                    <label>@_obj.VSM</label>
+                </div>
+
+            </div>
+        </div>
+        <div class="cnt">
+            <label for="NIC">NIC:</label>
+            <label>@_obj.NIC</label>
+        </div>
+
+        <div class="buttons">
+            <input type="button" class="btn" @onclick="DeleteRoutes" value="Delete" />
+
+            <input type="button" class="btn" @onclick="Cancel" value="Cancel" />
+
+        </div>
+    </form>
+</div>
+
+@code {
+    [Parameter]
+    public int EPF { get; set; }
+
+    Routed _obj = new Routed();
+    /*
+     *   protected override async Task OnInitializedAsync()
+    {
+        //_obj = await Task.Run(() => Routedetails.GetRoutedbyId(Convert.ToInt32(EPF)));
+
+
+    }
+     */
+
+  
+    protected async void DeleteRoutes()
+    {
+        await Routedetails.DeleteRouted(_obj);
+        NavigationManager.NavigateTo("/Rate");
+        
+
+    }
+
+    public void Cancel()
+    {
+
+        NavigationManager.NavigateTo("/Rate");
+    }
+
+
+}

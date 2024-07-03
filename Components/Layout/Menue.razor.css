@@ -1,0 +1,33 @@
+﻿.Manue {
+    display: flex;
+   
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 700;
+    color: #D3D3D3;
+}
+.navbar {
+    display: flex;
+    list-style: none;
+}
+    .navbar span {
+        color: #D3D3D3;
+        margin-left: 60px;
+        font-size: 15px;
+        font-weight: 600;
+        border-bottom: 2px solid transparent;
+        transition: all .55s ease;
+
+     
+    }
+.navbar span:hover{
+    border-bottom: 1px solid red;
+
+}
+.navbar span.ct i{
+    vertical-align: middle;
+    margin-right: 5px;
+    color:white;
+}

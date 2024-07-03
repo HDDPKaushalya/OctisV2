@@ -1,0 +1,30 @@
+﻿@page "/DriverPool/Profile"
+<h3>Profile</h3>
+
+<div class="contant">
+    <img src="#" id="driver" class="img12" />
+    <div class="contant1">
+        <ul class="list">
+            <li><label class="Name">Name:@name</label></li>
+            <li><label class="EPF">EPF: @epf</label></li>
+            <li><label class="ID">ID No: </label></li>
+            <li><label>B'Day: </label></li>
+            <li><label class="Adderss">Adderss: </label></li>
+            <li><label class="Contactno">Contact No: Land: Cell: </label></li>
+            <li><label>Driver Licence No: </label></li>
+
+        </ul>
+
+    </div> 
+</div>
+
+
+@code {
+    Dpool dp = new Dpool();
+    [Parameter]
+    public string? name{ get; set;}
+    [Parameter]
+    public int epf{ get; set; }
+
+
+}

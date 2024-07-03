@@ -1,0 +1,36 @@
+﻿
+form {
+    display: grid;
+}
+input {
+    width: 200px;
+}
+.mnbody {
+    position: center;
+}
+.mnt {
+    display: flex;
+}
+.ant {
+    display: grid;
+}
+.cnt {
+    display: flex;
+    margin: 10px
+}
+
+.btn0 {
+    -ms-border-radius: 2px;
+    border-radius: 2px;
+    margin: 10px;
+    color: black;
+    background-color: blue;
+}
+
+.btn1 {
+    -ms-border-radius: 2px;
+    border-radius: 2px;
+    margin: 10px;
+    color: black;
+    background-color: red;
+}

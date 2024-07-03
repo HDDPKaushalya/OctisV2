@@ -1,0 +1,143 @@
+﻿@page "/Search"
+@using octisv2.Components.Data
+@using octisv2.Components.Services
+@inject NavigationManager Navigation
+
+<h3>Search</h3>
+<div class="jumbotron">
+    <table >
+        <tr>
+            <td>Route : @mn.Route</td>
+            <td>Capacity: @_seatCap.SeatingCapacity</td>
+        </tr>
+        <tr>
+            <td>Occupancy : @_seatCap.Occupancy</td>
+            <td>
+                <div class="element">
+                    Available Seats :@_seatCap.Availability
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Driver : @mn.Driver</td>
+            <td>Driver&#39;s Mobile:@_seatCap.Mobile</td>
+        </tr>
+        <tr>
+            <td>Route Lead: </td>
+            <td>Driver&#39;s Mobile:@_seatCap.Mobile</td>
+        </tr>
+    </table>
+    <div class="row">
+        <div>
+            <label class="control-label col-xs-1" for="Route">Route</label>
+            <div class="col-xs-2">
+                @_seatCap.RouteNumber
+            </div>
+        </div>
+
+        <div>
+            <label class="control-label col-xs-2" for="Capacity">Capacity</label>
+            <div class="col-xs-1">
+                @_seatCap.SeatingCapacity
+            </div>
+
+        </div>
+        <div>
+            <label class="control-label col-xs-2" for="Occupancy">Occupancy</label>
+            <div class="col-xs-1">
+                @_seatCap.Occupancy
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-xs-2" for="Available_Seats">Available Seats</label>
+            <div class="col-xs-1">
+
+                <p id="element" style="background-color: palegreen; font-size: small">@_seatCap.Availability</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div>
+            <label class="control-label col-xs-1" for="Driver">Driver</label>
+            <div class="col-xs-3">
+                <p id="element2" style="background-color: #ffd972; font-size: small">@mn.Driver</p>
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-xs-2" for="Driver_s_Mobile">Driver&#39;s Mobile</label>
+            <div class="col-xs-2">
+                @_seatCap.Mobile
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div>
+            <label class="control-label col-xs-2" for="Route_Lead">Route Lead</label>
+            <div class="col-xs-2">
+
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-xs-2" for="Route_Lead_s_Mobile">Route Lead&#39;s Mobile</label>
+            <div class="col-xs-2">
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+            <table class="table table-bordered table-dark" id="headerTable">
+                <tr>
+                    <th>
+                        EPF
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Shift
+                    </th>
+                    <th>
+                        Contact
+                    </th>
+                    
+                    <th>
+                        NIC
+                    </th>
+                    <th>
+                        Gender
+                    </th>
+                    <th>
+                        VSM
+                    </th>
+                </tr>
+
+
+            </table>
+
+@inject Routedetails routedetails;
+@code {
+    [Parameter]
+    public string? driverName { get; set; }
+    [Parameter]
+    public int Epf { get; set; }
+    [Parameter]
+    public string? shift { get; set; }
+    [Parameter]
+    public string? route { get; set; }
+    Rate mn = new Rate();
+
+    SeatCap _seatCap = new SeatCap();
+
+    /*
+     *
+     *    protected override async Task OnInitializedAsync()
+      {
+      // _seatCap = await routedetails.GetRoutedbyRnt(mn.Route);
+        }
+    */
+ 
+}

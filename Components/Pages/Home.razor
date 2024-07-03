@@ -1,0 +1,65 @@
+﻿@page "/"
+
+
+
+<PageTitle>Home</PageTitle>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<body>
+Needed to add power bi transport
+
+
+
+<div class="charts">
+
+    <div id="myChart" style="width: 100%; max-width: 300px;height: 400px; margin: 20px">
+    </div>
+    <div id="myChart1" style="width: 100%; max-width: 300px; height: 400px;">
+    </div>
+</div>
+        <script>
+            google.charts.load('current', { 'packages': ['corechart'] });
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                const data = google.visualization.arrayToDataTable([
+
+                    ['Occupancy', 'Mhl'],
+                    ['100% - 75%', 54.8],
+                    ['75% - 50%', 48.6],
+                    ['50% - 25%', 44.4],
+                    ['25% - 0%', 23.9],
+                    ['0% - -10%', 5.8]
+                ]);
+
+                const data1 = google.visualization.arrayToDataTable([
+                    ['Contracters', 'Values'],
+                    ['T&S', 55],
+                    ['D&A', 49],
+                    ['JL', 44]
+                ]);
+
+                const options = {
+                    title: 'Occupancy',
+                    is3D: true
+                };
+
+                const options1 = {
+                    title: 'Contract Ownership'
+                };
+
+
+                const chart = new google.visualization.PieChart(document.getElementById('myChart'));
+                chart.draw(data, options);
+
+                const chart1 = new google.visualization.BarChart(document.getElementById('myChart1'));
+                chart1.draw(data1, options1);
+            }
+        </script>
+
+
+
+
+
+</body>

@@ -1,0 +1,88 @@
+﻿@page "/Editeroutes/{EPF}"
+@using octisv2.Components.Data
+@using octisv2.Components.Services
+@inject Routedetails Routedetails
+@inject NavigationManager NavigationManager
+
+
+<h3>Edite</h3>
+<hr />
+<div class="mnbody">
+    <form method="get">
+        <div class="mnt">
+            <div class="ant">
+                <div class="cnt">
+                    <label for="EPF">EPF: </label>
+                    <input type="text" form="EPF" @bind="@_obj.EPF" />
+                </div>
+                <div class="cnt">
+                    <label for="Shift">Shift:</label>
+                    <input type="text" form="Shift" @bind="@_obj.Shift" />
+                </div>
+            </div>
+            <div class="ant">
+                <div class="cnt">
+                    <label for="Name">Name:</label>
+                    <input type="text" form="Name" @bind="@_obj.Name" />
+                </div>
+                <div class="cnt">
+                    <label for="Contact">Contact :</label>
+                    <input type="text" form="Contact" @bind="@_obj.Contact" />
+                </div>
+            </div>
+            <div class="ant">
+                <div class="cnt">
+                    <label for="Gender">Gender:</label>
+                    <input type="text" form="Gender" @bind="@_obj.Gender" />
+                </div>
+                <div class="cnt">
+                    <label for="VSM">VSM:</label>
+                    <input type="text" form="VSM" @bind="@_obj.VSM" />
+                </div>
+
+            </div>
+        </div>
+        <div class="cnt">
+            <label for="NIC">NIC:</label>
+            <input type="text" form="NIC" @bind="@_obj.NIC" />
+        </div>
+
+        <div class="buttons">
+            <input type="button" class="btn" @onclick="Updateroutes" value="Update" />
+
+            <input type="button" class="btn" @onclick="Cancel" value="Cancel" />
+
+        </div>
+    </form>
+</div>
+
+@code {
+    [Parameter]
+    public int EPF { get; set; }
+
+    Routed _obj = new Routed();
+    /*
+     *     protected override async Task OnInitializedAsync()
+    {
+        _obj = await Task.Run(() => Routedetails.GetRoutedbyId(Convert.ToInt32(EPF)));
+
+
+    }
+     */
+
+
+    protected async void Updateroutes()
+    {
+        await Routedetails.UpdateRouted(_obj);
+        NavigationManager.NavigateTo("/Rate");
+        
+
+    }
+
+    public void Cancel()
+    {
+
+        NavigationManager.NavigateTo("/Rate");
+    }
+
+}

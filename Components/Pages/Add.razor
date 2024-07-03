@@ -1,0 +1,91 @@
+﻿@page "/Add"
+
+<button type="button" onclick="fnExcelReport()" class="btn btn-primary" style="margin: 10px">Export</button>
+
+<h3>Seat Availability</h3>
+
+
+
+
+<table class="table table-bordered" id="dataTable">
+    <tr>
+        <th>RouteNumber</th>
+        <th>Shift</th>
+        <th>Driver Name</th>
+        <th>NIC</th>
+        <th>Mobile</th>
+        <th>Seating Capacity</th>
+        <th>Occupancy</th>
+        <th>Availability</th>
+    </tr>
+    @foreach (var sap in _seatCap)
+    {
+        <tr>
+            <td>@sap.RouteNumber</td>
+            <td>@sap.Shift</td>
+            <td>@sap.DriverName</td>
+            <td>@sap.NIC</td>
+            <td>@sap.Mobile</td>
+            <td>@sap.SeatingCapacity</td>
+            <td>@sap.Occupancy</td>
+            <td>@sap.Availability</td>
+        </tr>
+
+    }
+
+</table>
+<script>
+ 
+    function fnExcelReport() {
+        var tab_text = "<table border='2px'><tr>";
+        var textRange; var j = 0;
+        tab = document.getElementById('dataTable'); // id of table
+
+        for (j = 0; j < tab.rows.length; j++) {
+            tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+            //tab_text=tab_text+"</tr>";
+        }
+
+        tab_text = tab_text + "</table>";
+        tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+        tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+        tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE");
+
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+        {
+            txtArea1.document.open("txt/html", "replace"); //Iframe should be added with txtArea1
+            txtArea1.document.write(tab_text);
+            txtArea1.document.close();
+            txtArea1.focus();
+            
+            sa = txtArea1.document.execCommand("SaveAs", true, "SE_Report.xls");
+        }
+        else                 //other browser not tested on IE 11
+            sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+
+        return (sa);
+    }
+
+</script>
+/@using Microsoft.AspNetCore.SignalR.Client
+@using octisv2.Components.Data;
+@using octisv2.Components.Services;
+@inject Routedetails routedetails;
+@inject NavigationManager Navigation;
+@code{
+    List<SeatCap> _seatCap = new List<SeatCap>();
+
+    //List<MNroutes> _mNroutes = new List<MNroutes>();
+   //private HubConnection? hubConnection;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _seatCap = await routedetails.Getalldetails();
+      // _mNroutes = await routedetails.GetMNroutes();
+    }
+
+}
+

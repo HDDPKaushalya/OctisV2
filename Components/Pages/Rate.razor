@@ -1,0 +1,133 @@
+﻿@page "/Rate"
+
+<NavLink href="AddEmp">
+    <button class="nav-btn"><i class="ri-add-line"></i> &nbsp;Add the Employee</button>
+</NavLink>
+<div class="container">
+    @Epf
+    <form >        
+        <div class="col-sm-1">
+            <label for="from">
+                Shift
+            </label>
+        </div>
+        <div class="col-sm-3">
+            <select class="form-control" id="shift" name="shift"  @bind="shift">
+                <option value="">Select</option>
+                <option>A</option>
+                <option>B</option>
+                <option>General</option>
+            </select>
+        </div>
+        <div class="col-sm-1">
+            <label for="from">
+                Route
+            </label>
+        </div>
+        <div class="col-sm-3">
+            <select class="form-control" id="route" name="route" @bind="Route">
+                <option value="">Select</option>
+                @foreach (var sap in _seatCap)
+                {
+                    <option value="@sap.RouteNumber">@sap.RouteNumber</option>
+                }
+            </select>
+        </div>
+        <div class="col-sm-1">
+            <label for="veh">
+                EPF
+            </label>
+        </div>
+        <div class="col-sm-3">
+            <input class="form-control" id="epf" name="epf" type="text" @bind="Epf"/>
+        </div>
+        <br />
+        <br />
+        <div class="col-sm-1">
+            <label for="driver">
+                Driver
+            </label>
+        </div>
+        <div class="col-sm-3">
+            <select class="form-control" id="dri" name="dri" @bind="Driver">
+              
+                <option value="">Select</option>
+                
+                @foreach (var sap in _seatCap)
+                {
+                    <option value="@sap.DriverName">@sap.DriverName</option>
+                }
+             
+
+            </select>
+        </div>
+
+        <br />
+        <br />
+        <br />
+        
+        <input type="submit" class="btn btn-info" value="Search" @onclick="NavigateToOtherPage"/>
+        
+    </form>
+</div>
+
+<div class="hide">
+    <div class ="card"></div>
+</div>
+
+
+<code> details</code>: @Driver
+
+
+@using Microsoft.AspNetCore.SignalR.Client
+@using octisv2.Components.Data;
+@using octisv2.Components.Services;
+@inject Routedetails routedetails;
+@inject NavigationManager Navigation;
+@code {
+    public string? Driver { get; set; }
+    public int? Epf { get; set; }
+    public string? Route { get; set;}
+    public string? shift { get; set; }
+
+
+    //List<Routed?> _routed = new List<Routed?>();
+    List<SeatCap> _seatCap = new List<SeatCap>();
+    //private HubConnection? hubConnection;
+
+
+    protected override async Task OnInitializedAsync()
+    { 
+        //_routed = await routedetails.Getallroutes();
+        _seatCap = await routedetails.Getalldetails();
+    }
+
+
+    private void NavigateToOtherPage()
+    {
+        Navigation.NavigateTo("/Search");
+    }
+
+
+
+
+}
+
+
+
+
+  
+
+
+
+       
+    
+ 
+   
+
+
+
+
+    
+
+
